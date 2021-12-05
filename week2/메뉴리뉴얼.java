@@ -9,6 +9,23 @@ import java.util.List;
 import java.util.Map;
 
 public class 메뉴리뉴얼 {
+	
+	/*
+	 *  order string을 순회하면서 , course 숫자별로 조합을 만든다.
+	 *  해당 조합의 주문숫자를 count해주고, 제일 높은 메뉴를 뽑는다 (동률이면 한개가 아닐수 있음)
+	 *  뽑힌 메뉴들 넣은 배열을 알파벳순으로 정렬하여 반환한다.
+	 */
+	 
+	public static void main(String[] args) {
+		//String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
+		//String[] orders = {"ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"};
+		String[] orders = {"XYZ", "XWY", "WXA"};
+		int[] course = {2,3,4};
+		String[] ans = solution(orders, course);
+		for(String s : ans)
+			System.out.println(s);
+	}
+	
 	public static String[] solution(String[] orders, int[] course) {
 		ArrayList<String> list = new ArrayList<String>();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
