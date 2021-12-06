@@ -16,5 +16,5 @@ public class 수찾기 {
 				System.out.println(1);
 			else System.out.println(0);
 		}
-	}
+	} 
 }
