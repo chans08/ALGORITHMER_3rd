@@ -13,6 +13,7 @@ public class 그룹단어체커 {
 			String str = sc.next();
 			checkFunc(str);
 		}
+		sc.close();
 		System.out.println(ans);
 	}
 	private static void checkFunc(String str) {

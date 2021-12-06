@@ -8,6 +8,7 @@ public class 크로아티아알파벳 {
 		Scanner sc = new Scanner(System.in);  // ljes=njak
 		String str = sc.next();
 		System.out.println(solution(str));
+		sc.close();
 	}
 	public static int solution(String str) {
 		String[] croAlpha = {"c=","c-","dz=","d-","lj","nj","s=","z="};
