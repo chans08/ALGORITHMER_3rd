@@ -18,26 +18,46 @@ public class 순위검색 {
     	for(int i=0;i<query.length;i++) { // 쿼리 질문별 정답 구하기
     		query[i] = query[i].replaceAll(" and "," ");
     		String[] qry = query[i].split(" ");
-    		answer[i] = ResultCount(sup,qry);
+    		answer[i] = ResultCount(sup,qry); 
+    		
     	}
         return answer;
     }
     
     public static int ResultCount(String[][] sup, String[] qry) {
     	Arrays.sort(sup,(o1,o2) -> Integer.parseInt(o1[4]) - Integer.parseInt(o2[4]));
-    	sup = BinarySearch(sup,qry[4]);
-
+    	for(int i=0;i<sup.length;i++) {
+    		if(Integer.parseInt(qry[4]) -Integer.parseInt(sup[i][4]) <=0) {
+    			sup = Arrays.copyOfRange(sup,i,sup.length);
+    			break;
+    		}
+    	}    	
     	for(int i=3;i>=0;i--) {
     		int idx = i;
         	Arrays.sort(sup,(o1,o2) -> o1[idx].compareTo(o2[idx]));
-        	sup = BinarySearch(sup,qry[idx]);		
+        	sup = BinarySearch(sup,qry[idx],i);		
     	}
     	return sup.length;
     }
-    
-    private static String[][] BinarySearch(String[][] sup, String cond) {
-    	
-    	return Arrays.copyOfRange(sup, 0, 15);
+    private static String[][] BinarySearch(String[][] sup, String cond, int i) {
+    	if(cond.equals("-") || sup.length < 1)
+    		return sup;   
+    	int start=0,end=sup.length;
+    	for(int j=0;j<sup.length;j++) {
+			if(sup[j][i].equals(cond)) {
+				start = j;
+				break;
+			}
+		}
+    	if(!sup[start][i].equals(cond))
+    		return Arrays.copyOfRange(sup,0,0);
+    	 for(int j=start;j<sup.length;j++) {
+			if(!sup[j][i].equals(cond)) {
+				end = j;
+				break;
+			}
+		}  	
+		return Arrays.copyOfRange(sup,start,end);
 	}
 }
 
